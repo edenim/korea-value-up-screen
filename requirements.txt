@@ -9,3 +9,8 @@ matplotlib
 openpyxl
 python-dotenv
 requests
+lxml
+html5lib
+beautifulsoup4
+yfinance
+xlrd
