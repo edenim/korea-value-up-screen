@@ -72,31 +72,46 @@ def to_number(value):
         return None
 
 
-def pick_amount(fs, statements, account_id):
-    """Current-year amount for account_id, from the first statement type that has it."""
+def pick_amount(fs, statements, account_id, col="thstrm_amount"):
+    """Amount for account_id from the first statement type that has it.
+
+    col="thstrm_amount" is the current fiscal year, "frmtrm_amount" the prior year
+    (as restated in the current annual report).
+    """
+    if col not in fs.columns:  # e.g. a newly listed company has no prior-year column
+        return None
     for sj in statements:
         rows = fs[(fs["sj_div"] == sj) & (fs["account_id"] == account_id)]
         if len(rows) > 0:
-            return to_number(rows.iloc[0]["thstrm_amount"])
+            return to_number(rows.iloc[0][col])
     return None
 
 
 def extract_financials(stock_code):
-    """Parent net income and parent equity. CFS first; OFS if no consolidated statements."""
+    """Parent NI and equity for FY and FY-1. CFS first; OFS if no consolidated statements."""
     for fs_div in ["CFS", "OFS"]:
         fs = dart_data.financial_statements(stock_code, FISCAL_YEAR, ANNUAL_REPORT_CODE, fs_div)
         if fs.empty:
             continue
+        currency = ",".join(sorted(fs["currency"].dropna().unique())) if "currency" in fs else None
         if fs_div == "OFS":
             # Separate statements have no minority interest, so total = parent
-            return {"fs_div": fs_div, "fin_rule": "OFS totals",
+            return {"fs_div": fs_div, "currency": currency, "fin_rule": "OFS totals",
                     "net_income_parent": pick_amount(fs, ["IS", "CIS"], NET_INCOME_ID),
-                    "equity_parent": pick_amount(fs, ["BS"], EQUITY_ID)}
-        return {"fs_div": fs_div, **extract_parent_amounts(fs)}
-    return {"fs_div": None, "fin_rule": None, "net_income_parent": None, "equity_parent": None}
+                    "equity_parent": pick_amount(fs, ["BS"], EQUITY_ID),
+                    "net_income_parent_prior": pick_amount(fs, ["IS", "CIS"], NET_INCOME_ID, "frmtrm_amount"),
+                    "equity_parent_prior": pick_amount(fs, ["BS"], EQUITY_ID, "frmtrm_amount")}
+        current = extract_parent_amounts(fs, "thstrm_amount")
+        prior = extract_parent_amounts(fs, "frmtrm_amount")
+        return {"fs_div": fs_div, "currency": currency, **current,
+                "net_income_parent_prior": prior["net_income_parent"],
+                "equity_parent_prior": prior["equity_parent"]}
+    return {"fs_div": None, "currency": None, "fin_rule": None,
+            "net_income_parent": None, "equity_parent": None,
+            "net_income_parent_prior": None, "equity_parent_prior": None}
 
 
-def extract_parent_amounts(fs):
+def extract_parent_amounts(fs, col):
     """Parent NI and equity from consolidated statements.
 
     Companies tag the same numbers differently, so we try, in order:
@@ -107,18 +122,18 @@ def extract_parent_amounts(fs):
     Every value is a reported figure or an exact identity of reported figures.
     """
     rules = []
-    ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_PARENT_ID)
+    ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_PARENT_ID, col)
     if ni is None:
-        ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_PARENT_ALT_ID)
+        ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_PARENT_ALT_ID, col)
         if ni is not None:
             rules.append("alt NI id")
 
-    eq = pick_amount(fs, ["BS"], EQUITY_PARENT_ID)
-    total_eq = pick_amount(fs, ["BS"], EQUITY_ID)
+    eq = pick_amount(fs, ["BS"], EQUITY_PARENT_ID, col)
+    total_eq = pick_amount(fs, ["BS"], EQUITY_ID, col)
     if eq is None and total_eq is not None:
         nci_rows = fs[(fs["sj_div"] == "BS") & (fs["account_id"] == NCI_ID)]
         if len(nci_rows) > 0:
-            nci = to_number(nci_rows.iloc[0]["thstrm_amount"])
+            nci = to_number(nci_rows.iloc[0][col]) if col in fs.columns else None
             if nci is not None:
                 eq = total_eq - nci
                 rules.append("equity = total - NCI")
@@ -128,7 +143,7 @@ def extract_parent_amounts(fs):
             rules.append("no NCI line, equity = total")
 
     if ni is None and eq is not None and total_eq is not None and eq == total_eq:
-        ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_ID)
+        ni = pick_amount(fs, ["IS", "CIS"], NET_INCOME_ID, col)
         if ni is not None:
             rules.append("no NCI, NI = total NI")
 
@@ -256,6 +271,11 @@ def main():
     uni_ok = uni[has_data].copy()
     steps.append(("DART FY financials available", len(uni_ok)))
 
+    # Market cap is in KRW, so financials reported in another currency would give a wrong P/B
+    non_krw = uni_ok[uni_ok["currency"] != "KRW"][["code", "name", "currency"]]
+    uni_ok = uni_ok[uni_ok["currency"] == "KRW"].copy()
+    steps.append(("Financials reported in KRW", len(uni_ok)))
+
     uni_ok = uni_ok[(uni_ok["net_income_parent"] > 0) & (uni_ok["equity_parent"] > 0)].copy()
     steps.append(("Drop EPS <= 0 or BPS <= 0", len(uni_ok)))
 
@@ -263,11 +283,11 @@ def main():
     uni.to_csv(PROCESSED_DIR / "universe_all_pulled.csv", index=False)
     uni_ok.to_csv(PROCESSED_DIR / "universe.csv", index=False)
 
-    write_report(steps, dropped_names, missing, no_financials, non_dec_fy, uni_ok)
+    write_report(steps, dropped_names, missing, no_financials, non_krw, non_dec_fy, uni_ok)
     print("\nDone. Rows in final universe:", len(uni_ok))
 
 
-def write_report(steps, dropped_names, missing, no_financials, non_dec_fy, uni_ok):
+def write_report(steps, dropped_names, missing, no_financials, non_krw, non_dec_fy, uni_ok):
     lines = ["# Phase 1 data quality report", "",
              f"Listing date: {LISTING_DATE}. Financials: FY{FISCAL_YEAR} annual report (DART).", "",
              "## Rows at each filter step", "", "| Step | Rows |", "|---|---|"]
@@ -286,6 +306,12 @@ def write_report(steps, dropped_names, missing, no_financials, non_dec_fy, uni_o
         lines.append("none")
     else:
         lines += [f"- {r.code} {r.name} (fs_div: {r.fs_div})" for r in no_financials.itertuples()]
+
+    lines += ["", "## Financials not in KRW (excluded, no FX conversion)", ""]
+    if non_krw.empty:
+        lines.append("none")
+    else:
+        lines += [f"- {r.code} {r.name} ({r.currency})" for r in non_krw.itertuples()]
 
     lines += ["", "## Non-December fiscal year (kept, flagged)", ""]
     if non_dec_fy.empty:

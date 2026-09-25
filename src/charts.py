@@ -52,10 +52,7 @@ def pb_vs_roe(df, cands, model):
     y = np.exp(model.params["Intercept"] + model.params["roe_w"] * x)
     ax.plot(x * 100, y, color=TEXT_SECONDARY, linewidth=2, label="Model (sector-adjusted fit)", zorder=1)
 
-    for _, r in cands.head(10).iterrows():
-        ax.annotate(short_name(r.get("name_eng"), r["code"]),
-                    (r["roe_w"] * 100, np.exp(r["sector_adj_log_pb"])),
-                    xytext=(5, -3), textcoords="offset points", fontsize=7.5, color=TEXT_PRIMARY)
+    label_candidates(ax, cands.head(8))
 
     ax.set_yscale("log")
     ax.set_xlabel("ROE, FY2025 (%, winsorized 1/99)")
@@ -64,11 +61,35 @@ def pb_vs_roe(df, cands, model):
                  loc="left", fontsize=11, color=TEXT_PRIMARY)
     ax.legend(frameon=False, fontsize=8, loc="upper left")
     fig.text(0.01, 0.01, "Below the line = trading below the P/B its ROE and sector justify. "
-             "Top 10 candidates labeled. Source: DART, FinanceDataReader.",
+             "Top 8 candidates labeled. Source: DART, FinanceDataReader.",
              fontsize=7, color=TEXT_SECONDARY)
     fig.tight_layout(rect=(0, 0.03, 1, 1))
     fig.savefig(CHART_DIR / "pb_vs_roe.png", dpi=200)
     plt.close(fig)
+
+
+def label_candidates(ax, cands, label_x=25.0, min_gap=0.08):
+    """Label points on a log-y axis without overlaps.
+
+    Labels are stacked in one column at x=label_x, sorted by height, so leader lines
+    never cross. Points already right of the column get a label just beside them.
+    min_gap is the minimum vertical spacing between labels, in log10 units.
+    """
+    pts = sorted(((r["roe_w"] * 100, r["sector_adj_log_pb"] / np.log(10),
+                   short_name(r.get("name_eng"), r["code"])) for _, r in cands.iterrows()),
+                 key=lambda t: t[1])
+    placed = []
+    for x, y, text in pts:
+        if x >= label_x - 1:
+            tx, ty = x + 1.2, y
+        else:
+            ty = y if not placed else max(y, placed[-1] + min_gap)
+            placed.append(ty)
+            tx = label_x
+        ax.annotate(text, (x, 10 ** y), xytext=(tx, 10 ** ty), textcoords="data",
+                    fontsize=7.5, color=TEXT_PRIMARY, va="center",
+                    arrowprops=dict(arrowstyle="-", color=TEXT_SECONDARY, linewidth=0.6,
+                                    shrinkA=0, shrinkB=3))
 
 
 def residual_by_sector(df):
@@ -78,17 +99,23 @@ def residual_by_sector(df):
 
     for i, sector in enumerate(order):
         vals = df.loc[df["sector"] == sector, "residual_pooled"]
-        ax.scatter(np.exp(vals) - 1, i + rng.uniform(-0.15, 0.15, len(vals)), s=12,
+        ax.scatter(np.exp(vals), i + rng.uniform(-0.15, 0.15, len(vals)), s=12,
                    color=NEUTRAL_DOT, edgecolor=SURFACE, linewidth=0.6, zorder=2)
-        med = np.exp(vals.median()) - 1
+        med = np.exp(vals.median())
         ax.scatter([med], [i], s=60, marker="|", color=SERIES_1, linewidth=2.5, zorder=3)
         ax.text(1.02, i, f"n={len(vals)}", transform=ax.get_yaxis_transform(),
                 va="center", fontsize=7.5, color=TEXT_SECONDARY)
 
-    ax.axvline(0, color=TEXT_SECONDARY, linewidth=1)
+    # Log scale on the ratio actual/model, so +100% and -50% sit equally far from zero
+    ax.set_xscale("log")
+    ax.axvline(1, color=TEXT_SECONDARY, linewidth=1)
+    ticks = [0.25, 0.5, 1, 2, 4]
+    ax.set_xticks(ticks)
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v - 1:+.0%}"))
+    ax.xaxis.set_minor_formatter(plt.NullFormatter())
     ax.set_yticks(range(len(order)))
     ax.set_yticklabels(order)
-    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:+.0%}"))
+    ax.invert_yaxis()  # most discounted sector on top
     ax.set_xlabel("Actual P/B vs ROE-only model P/B (dots = companies, bar = sector median)")
     ax.set_title("Which sectors trade below the P/B their ROE implies", loc="left", fontsize=11)
     ax.grid(axis="y", visible=False)
@@ -97,7 +124,7 @@ def residual_by_sector(df):
     plt.close(fig)
 
 
-def event_study_car(mean_cum_ar, n):
+def event_study_car(mean_cum_ar, n, t_stat):
     fig, ax = plt.subplots(figsize=(6.5, 3.8))
     ax.plot(mean_cum_ar.index, mean_cum_ar.values * 100, color=SERIES_1, linewidth=2,
             marker="o", markersize=5, markeredgecolor=SURFACE, markeredgewidth=1.5)
@@ -110,7 +137,8 @@ def event_study_car(mean_cum_ar, n):
     ax.set_xlabel("Trading days relative to first Value-Up plan disclosure (day 0)")
     ax.set_ylabel("Mean cumulative abnormal return (%)")
     ax.set_title(f"Market reaction to first Value-Up plan (N={n})", loc="left", fontsize=11)
-    fig.text(0.01, 0.01, "Market model vs KOSPI, estimation window [-250, -30]. "
+    fig.text(0.01, 0.01, f"CAR[-1,+5] t-stat {t_stat:.2f}, not significant. Market model vs KOSPI, "
+             "estimation window [-250, -30]. "
              "Source: DART, FinanceDataReader.", fontsize=7, color=TEXT_SECONDARY)
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(CHART_DIR / "event_study_car.png", dpi=200)

@@ -1,0 +1,40 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 log_pb   R-squared:                       0.527
+Model:                            OLS   Adj. R-squared:                  0.488
+Method:                 Least Squares   F-statistic:                     15.53
+Date:                Fri, 25 Sep 2026   Prob (F-statistic):           5.15e-27
+Time:                        15:43:02   Log-Likelihood:                -240.21
+No. Observations:                 214   AIC:                             514.4
+Df Residuals:                     197   BIC:                             571.6
+Df Model:                          16                                         
+Covariance Type:                  HC3                                         
+===========================================================================================================
+                                              coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------
+Intercept                                  -0.7969      0.111     -7.153      0.000      -1.015      -0.579
+C(sector)[T.Business Services]              1.0382      0.309      3.356      0.001       0.432       1.644
+C(sector)[T.Chemicals & Energy]             0.6143      0.251      2.445      0.014       0.122       1.107
+C(sector)[T.Construction & Real Estate]     0.5717      0.296      1.930      0.054      -0.009       1.152
+C(sector)[T.Consumer Discretionary]        -0.0136      0.183     -0.074      0.941      -0.371       0.344
+C(sector)[T.Consumer Staples]               0.3681      0.146      2.513      0.012       0.081       0.655
+C(sector)[T.Healthcare]                     0.6538      0.238      2.749      0.006       0.188       1.120
+C(sector)[T.Holding Companies]              0.2558      0.187      1.370      0.171      -0.110       0.622
+C(sector)[T.Industrials]                    1.2248      0.210      5.845      0.000       0.814       1.636
+C(sector)[T.Materials]                     -0.1548      0.227     -0.683      0.495      -0.599       0.290
+C(sector)[T.Retail & Trading]               0.0863      0.161      0.536      0.592      -0.229       0.402
+C(sector)[T.Software & Internet]            0.5067      0.203      2.496      0.013       0.109       0.905
+C(sector)[T.Steel & Metals]                 0.0650      0.315      0.206      0.837      -0.553       0.683
+C(sector)[T.Tech Hardware & Semis]          1.4091      0.198      7.101      0.000       1.020       1.798
+C(sector)[T.Transport]                     -0.1583      0.237     -0.668      0.504      -0.623       0.306
+C(sector)[T.Utilities & Telecom]           -0.2784      0.368     -0.756      0.450      -1.000       0.443
+roe_w                                       6.0000      0.828      7.245      0.000       4.377       7.623
+==============================================================================
+Omnibus:                        6.220   Durbin-Watson:                   1.542
+Prob(Omnibus):                  0.045   Jarque-Bera (JB):                5.989
+Skew:                           0.345   Prob(JB):                       0.0501
+Kurtosis:                       3.444   Cond. No.                         22.2
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)

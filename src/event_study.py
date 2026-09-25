@@ -103,6 +103,9 @@ def main():
         "all": summarize(res["car"]),
         "non_financials": summarize(res.loc[~res["is_financial"], "car"]),
         "financials": summarize(res.loc[res["is_financial"], "car"]),
+        # Early adopters vs the 2026 wave (59 first filings in March 2026 alone)
+        "filed_2024_2025": summarize(res.loc[pd.to_datetime(res["event_date"]).dt.year <= 2025, "car"]),
+        "filed_2026": summarize(res.loc[pd.to_datetime(res["event_date"]).dt.year == 2026, "car"]),
         "skipped": [{"code": c, "name": n, "reason": why} for c, n, why in skipped],
         "busiest_event_months": {str(k): int(v) for k, v in by_month.sort_values(ascending=False).head(5).items()},
         "window": [WIN_START, WIN_END], "estimation": [EST_START, EST_END],
@@ -112,7 +115,7 @@ def main():
 
     mean_path = pd.concat(ar_paths, axis=1).mean(axis=1).cumsum()
     import charts
-    charts.event_study_car(mean_path, stats["all"]["n"])
+    charts.event_study_car(mean_path, stats["all"]["n"], stats["all"]["t_stat"])
     print(json.dumps({k: v for k, v in stats.items() if k != "skipped"}, indent=2))
     print("skipped:", len(skipped))
 

@@ -1,0 +1,51 @@
+{
+  "n_nonfinancial": 214,
+  "n_financial": 36,
+  "dropped_missing_payout": 2,
+  "roe_coef": 5.999989834453965,
+  "roe_se_hc3": 0.8281687904107786,
+  "roe_pvalue": 4.327978466746624e-13,
+  "r_squared": 0.5267829580868657,
+  "n_sectors": 16,
+  "rf": 0.042859999999999995,
+  "rf_month": "2026-08",
+  "erp": 0.0486906451636496,
+  "coe": 0.0915506451636496,
+  "g": 0.02,
+  "rf_source": "FRED IRLTLT01KRM156N (OECD), Korea 10Y government bond yield, latest month",
+  "erp_source": "Damodaran ctryprem.xlsx, Jan 2026 update, 'ERPs by country', Korea total ERP",
+  "justified_rank_corr": 0.6501138427434431,
+  "n_candidates": 22,
+  "n_candidates_valueup": 8,
+  "median_pb": 1.2923492580313156,
+  "median_roe": 0.08013384509506785,
+  "share_below_justified": 0.32124352331606215,
+  "residual_bottom_quartile": -0.5225901356913462,
+  "roe_median": 0.08013384509506785,
+  "payout_median": 0.2541089067969125
+}
+
+Candidates:
+  code     name                     sector       pb      roe  roe_prior   payout  valueup_plan  discount_pct
+002380      KCC         Chemicals & Energy 0.522746 0.196626   0.065292 0.071701          True     -0.807151
+004490     세방전지                Industrials 0.505917 0.086836   0.115301 0.248920          True     -0.804137
+439260     대한조선                Industrials 1.586472 0.227736   0.380756 0.034181         False     -0.736274
+023590     다우기술        Software & Internet 0.492353 0.146581   0.123242 0.153754         False     -0.726873
+071970 HD현대마린엔진                Industrials 3.399697 0.337692   0.244930 0.000000         False     -0.707827
+033240     자화전자      Tech Hardware & Semis 1.253606 0.105994   0.041492 0.000000         False     -0.640193
+009450    경동나비엔                Industrials 1.138267 0.116417   0.178801 0.120851         False     -0.630994
+003090       대웅                 Healthcare 0.785183 0.148782   0.058088 0.046729         False     -0.628973
+007340  DN오토모티브                Industrials 1.396216 0.140287   0.163607 0.183824         False     -0.607768
+006040     동원산업          Holding Companies 0.440403 0.104034   0.026923 0.130786          True     -0.594714
+015760     한국전력        Utilities & Telecom 0.403144 0.177391   0.087478 0.115844         False     -0.592406
+017960     한국카본                Industrials 1.803693 0.175368   0.042846 0.156632         False     -0.589475
+075580    세진중공업                Industrials 2.478308 0.221827   0.060447 0.252525          True     -0.573153
+069620     대웅제약                 Healthcare 1.223042 0.194669   0.031129 0.035249         False     -0.561161
+005880     대한해운                  Transport 0.297124 0.083534   0.080245 0.000000         False     -0.532172
+071320   지역난방공사        Utilities & Telecom 0.393435 0.147251   0.092703 0.234392          True     -0.523373
+317450     명인제약                 Healthcare 0.771925 0.102514   0.129124 0.223281          True     -0.518526
+077970    STX엔진                Industrials 2.569458 0.201032   0.098405 0.000000         False     -0.498646
+005440 현대지에프홀딩스          Holding Companies 0.596936 0.102992   0.207388 0.113507          True     -0.447219
+009410     태영건설 Construction & Real Estate 0.857395 0.105036   0.066713 0.000000         False     -0.428153
+284740    쿠쿠홈시스     Consumer Discretionary 0.496478 0.110188   0.132559 0.225141         False     -0.423572
+009970  영원무역홀딩스          Holding Companies 0.701996 0.121944   0.123010 0.207550          True     -0.419802

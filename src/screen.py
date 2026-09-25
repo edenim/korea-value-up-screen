@@ -58,6 +58,9 @@ def build_variables(uni):
     df = uni.copy()
     df["pb"] = df["mcap_total"] / df["equity_parent"]
     df["roe"] = df["net_income_parent"] / df["equity_parent"]
+    # Prior-year ROE, used only to flag one-off or peak-cycle earnings (not in the model)
+    df["roe_prior"] = df["net_income_parent_prior"] / df["equity_parent_prior"]
+    df["roe_jump_pp"] = (df["roe"] - df["roe_prior"]) * 100
     df["div_yield"] = df["dps_common"] / df["price"]
     eps_ok = df["eps_reported"] > 0
     df["payout"] = (df["dps_common"] / df["eps_reported"]).where(eps_ok, df["payout_reported_pct"] / 100)
@@ -136,7 +139,8 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     nonfin.to_csv(PROCESSED_DIR / "screen_results.csv", index=False)
     fin.to_csv(PROCESSED_DIR / "screen_financials.csv", index=False)
-    cand_cols = ["code", "name", "sector", "pb", "roe", "div_yield", "payout", "valueup_plan",
+    cand_cols = ["code", "name", "name_eng", "sector", "pb", "roe", "roe_prior", "roe_jump_pp",
+                 "div_yield", "payout", "valueup_plan",
                  "valueup_first_plan_date", "residual", "discount_pct", "justified_pb",
                  "mcap_total"]
     cands[cand_cols].to_csv(OUTPUT_DIR / "candidates.csv", index=False)
@@ -171,7 +175,7 @@ def main():
 
     print(json.dumps(stats, indent=2))
     print("\nCandidates:")
-    print(cands[["code", "name", "sector", "pb", "roe", "payout", "valueup_plan",
+    print(cands[["code", "name", "sector", "pb", "roe", "roe_prior", "payout", "valueup_plan",
                  "discount_pct"]].to_string(index=False))
 
 

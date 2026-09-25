@@ -1,0 +1,74 @@
+{
+  "all": {
+    "n": 169,
+    "mean_car": 0.002409239995832166,
+    "median_car": -0.004796325598149825,
+    "t_stat": 0.41284098509747885,
+    "share_positive": 0.47337278106508873
+  },
+  "non_financials": {
+    "n": 144,
+    "mean_car": 0.0014431690153550649,
+    "median_car": -0.014424325498761235,
+    "t_stat": 0.21703700351365204,
+    "share_positive": 0.4444444444444444
+  },
+  "financials": {
+    "n": 25,
+    "mean_car": 0.007973808843380273,
+    "median_car": 0.010299813763425973,
+    "t_stat": 0.8287635574548884,
+    "share_positive": 0.64
+  },
+  "filed_2024_2025": {
+    "n": 99,
+    "mean_car": 0.001996480766746058,
+    "median_car": -0.000992970808180553,
+    "t_stat": 0.2770984657986486,
+    "share_positive": 0.48484848484848486
+  },
+  "filed_2026": {
+    "n": 70,
+    "mean_car": 0.0029929994769682332,
+    "median_car": -0.017139182204766464,
+    "t_stat": 0.3056182118619036,
+    "share_positive": 0.45714285714285713
+  },
+  "skipped": [
+    {
+      "code": "443060",
+      "name": "HD현대마린솔루션",
+      "reason": "not enough history for estimation window"
+    },
+    {
+      "code": "031210",
+      "name": "서울보증보험",
+      "reason": "not enough history for estimation window"
+    },
+    {
+      "code": "483650",
+      "name": "달바글로벌",
+      "reason": "not enough history for estimation window"
+    },
+    {
+      "code": "317450",
+      "name": "명인제약",
+      "reason": "not enough history for estimation window"
+    }
+  ],
+  "busiest_event_months": {
+    "2026-03": 59,
+    "2024-11": 19,
+    "2024-12": 17,
+    "2024-10": 16,
+    "2025-04": 9
+  },
+  "window": [
+    -1,
+    5
+  ],
+  "estimation": [
+    -250,
+    -30
+  ]
+}

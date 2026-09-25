@@ -13,7 +13,8 @@ Listing date: 20260925. Financials: FY2025 annual report (DART).
 | Drop listed infrastructure funds | 806 |
 | Market cap >= KRW 500bn | 296 |
 | DART FY financials available | 292 |
-| Drop EPS <= 0 or BPS <= 0 | 253 |
+| Financials reported in KRW | 291 |
+| Drop EPS <= 0 or BPS <= 0 | 252 |
 
 ## Dropped by name rule
 
@@ -40,13 +41,17 @@ Listing date: 20260925. Financials: FY2025 annual report (DART).
 - 0220W0 한화머시너리앤서비스홀딩스 (fs_div: None)
 - 001270 부국증권 (fs_div: CFS)
 
+## Financials not in KRW (excluded, no FX conversion)
+
+- 241560 두산밥캣 (USD)
+
 ## Non-December fiscal year (kept, flagged)
 
 - 001720 신영증권 (fiscal month 03)
 
 ## Final universe composition
 
-- Total: 253
-- Financials: 36, non-financials: 217
-- Filed a Value-Up plan: 174
-- Consolidated (CFS): 246, separate (OFS): 7
+- Total: 252
+- Financials: 36, non-financials: 216
+- Filed a Value-Up plan: 173
+- Consolidated (CFS): 245, separate (OFS): 7
