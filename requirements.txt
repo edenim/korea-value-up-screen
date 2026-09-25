@@ -14,3 +14,4 @@ html5lib
 beautifulsoup4
 yfinance
 xlrd
+formulas

@@ -1,0 +1,1281 @@
+{
+  "Cover": {
+    "Share price, 25 Sep 2026 (KRW)": {
+      "Value": 60200
+    },
+    "DCF value per share (KRW)": {
+      "Value": 83472.09261087354
+    },
+    "Upside / (downside)": {
+      "Value": 0.3865796114763047
+    },
+    "Rating": {
+      "Value": "Overweight"
+    },
+    "WACC": {
+      "Value": 0.07900708377756316
+    },
+    "Terminal growth": {
+      "Value": 0.02
+    },
+    "Terminal value as % of EV": {
+      "Value": 0.7791204973450041
+    },
+    "Check: balance sheet balances (sum of abs. differences)": {
+      "Value": 5.684341886080801e-13
+    },
+    "Check: regional revenue ties to income statement": {
+      "Value": 2.5490002144579194e-06
+    },
+    "Check: historical balance sheets balance": {
+      "Value": 1.1368683772161603e-13
+    },
+    "Legend": {},
+    "Blue text: hardcoded input or reported figure": {},
+    "Black text: formula": {},
+    "Green text: link to another sheet": {},
+    "Yellow fill: key assumption": {},
+    "Sources": {},
+    "DART OpenAPI (opendart.fss.or.kr): FY2025 annual report, 1H2026 half-year report, notes, filings": {},
+    "FinanceDataReader: KOSPI listing and prices, 25 Sep 2026": {},
+    "FRED IRLTLT01KRM156N: Korea 10-year government bond yield": {},
+    "Damodaran Online, Jan 2026: country risk premiums, global industry betas, synthetic ratings": {},
+    "Yahoo Finance via yfinance: peer market data (see Comps sheet for fetch date)": {}
+  },
+  "Inputs": {
+    "Market data (25 Sep 2026)": {},
+    "Share price (KRW)": {
+      "Value": 60200,
+      "Source / rationale": "FinanceDataReader KOSPI listing, close 25 Sep 2026"
+    },
+    "Common shares listed": {
+      "Value": 14568592,
+      "Source / rationale": "FinanceDataReader KOSPI listing"
+    },
+    "Treasury shares": {
+      "Value": 115660,
+      "Source / rationale": "DART FY2025 annual report, treasury stock table"
+    },
+    "Shares outstanding": {
+      "Value": 14452932.0,
+      "Source / rationale": "Listed less treasury"
+    },
+    "Discount rate": {},
+    "Risk-free rate": {
+      "Value": 0.04286,
+      "Source / rationale": "Korea 10Y government bond yield, 2026-08, FRED IRLTLT01KRM156N"
+    },
+    "Equity risk premium": {
+      "Value": 0.04869,
+      "Source / rationale": "Damodaran country risk premiums, Jan 2026, Korea total ERP"
+    },
+    "Unlevered beta": {
+      "Value": 0.8588,
+      "Source / rationale": "Damodaran global industry betas, Jan 2026, Building Materials"
+    },
+    "Marginal tax rate (debt shield, relevering)": {
+      "Value": 0.264,
+      "Source / rationale": "Korea statutory rate incl. local tax, Damodaran country tax rates"
+    },
+    "Debt spread over risk-free": {
+      "Value": 0.004,
+      "Source / rationale": "Damodaran synthetic rating, smaller firms: coverage > 12.5x = AAA. FY25 EBIT / interest paid = 15.3x"
+    },
+    "Pre-tax cost of debt": {
+      "Value": 0.04686,
+      "Source / rationale": "Risk-free rate + spread"
+    },
+    "Terminal growth": {
+      "Value": 0.02,
+      "Source / rationale": "Bank of Korea inflation target"
+    },
+    "Operating assumptions": {},
+    "Tax rate on EBIT": {
+      "Value": 0.2985709784557635,
+      "Source / rationale": "Average of tax at applicable rates / PBT, FY2024 and FY2025 (excludes deferred tax swings)"
+    },
+    "Operating margin, 2H2026E": {
+      "Value": 0.07080809088050888,
+      "Source / rationale": "Equal to 2H2025 actual margin. 1H2026 includes undisclosed US tariff refunds, so it is not extrapolated"
+    },
+    "Operating margin, FY2027E onward": {
+      "Value": 0.095,
+      "Source / rationale": "FY2023 to FY2025 average 9.4%, range 8.8% to 9.8%"
+    },
+    "D&A / revenue": {
+      "Value": 0.035,
+      "Source / rationale": "FY2024 and FY2025 both 3.5%"
+    },
+    "Net working capital / revenue": {
+      "Value": 0.26,
+      "Source / rationale": "FY2024 26.3%, FY2025 27.7%"
+    },
+    "DPS, FY2026E onward (KRW)": {
+      "Value": 750,
+      "Source / rationale": "Held at FY2025 DPS of KRW 750 (DART dividend table). No policy change assumed"
+    },
+    "Commax acquisition, cash consideration": {
+      "Value": 31.729097,
+      "Source / rationale": "DART 1H2026 notes, business combination (paid 2026)"
+    },
+    "Rating band (+/-)": {
+      "Value": 0.15,
+      "Source / rationale": "Overweight above +15%, Underweight below -15%, else Neutral"
+    },
+    "Time-series input": {
+      "C": "FY2026E",
+      "D": "FY2027E",
+      "E": "FY2028E",
+      "F": "FY2029E",
+      "G": "FY2030E",
+      "Source / rationale": "Source / rationale"
+    },
+    "Revenue growth: North America": {
+      "C": 0.07,
+      "D": 0.07,
+      "E": 0.06,
+      "F": 0.05,
+      "G": 0.04,
+      "Source / rationale": "1H26 +7.1%. Slowing from +17.2% (FY24), +11.7% (FY25)"
+    },
+    "Revenue growth: Korea (incl. Commax)": {
+      "C": 0,
+      "D": 0.03,
+      "E": 0.03,
+      "F": 0.03,
+      "G": 0.03,
+      "Source / rationale": "1H26 flat even with Commax consolidated"
+    },
+    "Revenue growth: Russia": {
+      "C": 0,
+      "D": 0,
+      "E": 0,
+      "F": 0,
+      "G": 0,
+      "Source / rationale": "FY23 to FY25 CAGR +0.1%, sanctions risk"
+    },
+    "Revenue growth: China": {
+      "C": -0.05,
+      "D": -0.05,
+      "E": -0.05,
+      "F": -0.05,
+      "G": -0.05,
+      "Source / rationale": "FY23 to FY25 CAGR -12.1%"
+    },
+    "Revenue growth: Other overseas": {
+      "C": 0.2,
+      "D": 0.15,
+      "E": 0.12,
+      "F": 0.1,
+      "G": 0.08,
+      "Source / rationale": "FY23 to FY25 CAGR +31.4%, small base"
+    },
+    "Capex / revenue": {
+      "C": 0.07,
+      "D": 0.05,
+      "E": 0.045,
+      "F": 0.045,
+      "G": 0.045,
+      "Source / rationale": "1H26 8.1%. Seotan expansion completed Jul 2026. Pre-expansion FY23: 5.4%"
+    }
+  },
+  "Historical": {
+    "Income statement": {},
+    "Revenue: Korea": {
+      "FY2023": 389.731877,
+      "FY2024": 411.549738,
+      "FY2025": 458.396757,
+      "1H2025": 228.831414,
+      "1H2026": 228.582661,
+      "Source": "DART notes, geographic disclosure"
+    },
+    "Revenue: North America": {
+      "FY2023": 660.915049,
+      "FY2024": 774.931923,
+      "FY2025": 865.778487,
+      "1H2025": 471.574511,
+      "1H2026": 504.994164,
+      "Source": "DART notes, geographic disclosure"
+    },
+    "Revenue: Russia": {
+      "FY2023": 79.872522,
+      "FY2024": 78.690989,
+      "FY2025": 80.044573,
+      "1H2025": 28.757106,
+      "1H2026": 35.326866,
+      "Source": "DART notes, geographic disclosure"
+    },
+    "Revenue: China": {
+      "FY2023": 30.857741,
+      "FY2024": 30.711092,
+      "FY2025": 23.935346,
+      "1H2025": 6.720572,
+      "1H2026": 7.872262,
+      "Source": "DART notes, geographic disclosure"
+    },
+    "Revenue: Other overseas": {
+      "FY2023": 42.935682,
+      "FY2024": 57.9957,
+      "FY2025": 74.084566,
+      "1H2025": 21.574697,
+      "1H2026": 36.74376,
+      "Source": "DART notes, geographic disclosure"
+    },
+    "Total revenue": {
+      "FY2023": 1204.312871,
+      "FY2024": 1353.879442,
+      "FY2025": 1502.239729,
+      "1H2025": 757.4583,
+      "1H2026": 813.5197129999999,
+      "Source": "Formula"
+    },
+    "Revenue per income statement": {
+      "FY2023": 1204.312871752,
+      "FY2024": 1353.879442184,
+      "FY2025": 1502.239729157,
+      "1H2025": 757.458301255,
+      "1H2026": 813.519712799,
+      "Source": "DART CFS"
+    },
+    "Check: regions minus income statement": {
+      "FY2023": -7.520000053773401e-07,
+      "FY2024": -1.8400010048935656e-07,
+      "FY2025": -1.5700015865149908e-07,
+      "1H2025": -1.2550000292321783e-06,
+      "1H2026": 2.0099992070754524e-07,
+      "Source": "Formula"
+    },
+    "Cost of sales": {
+      "FY2023": 690.334353034,
+      "FY2024": 743.320161449,
+      "FY2025": 863.742901395,
+      "1H2025": 416.695893846,
+      "1H2026": 407.581300418,
+      "Source": "DART CFS"
+    },
+    "Gross profit": {
+      "FY2023": 513.9785187180001,
+      "FY2024": 610.559280735,
+      "FY2025": 638.4968277620001,
+      "1H2025": 340.76240740900005,
+      "1H2026": 405.938412381,
+      "Source": "Formula"
+    },
+    "SG&A": {
+      "FY2023": 408.067980863,
+      "FY2024": 477.983230283,
+      "FY2025": 495.119934229,
+      "1H2025": 250.122064909,
+      "1H2026": 257.866939489,
+      "Source": "DART CFS"
+    },
+    "Operating profit": {
+      "FY2023": 105.910537855,
+      "FY2024": 132.576050452,
+      "FY2025": 143.376893533,
+      "1H2025": 90.6403425,
+      "1H2026": 148.071472892,
+      "Source": "DART CFS"
+    },
+    "Depreciation and amortization": {
+      "FY2024": 47.372658,
+      "FY2025": 52.812497,
+      "1H2025": 25.783551,
+      "1H2026": 27.340245,
+      "Source": "DART notes, expenses by nature"
+    },
+    "EBITDA": {
+      "FY2024": 179.948708452,
+      "FY2025": 196.189390533,
+      "1H2025": 116.4238935,
+      "1H2026": 175.411717892,
+      "Source": "Formula"
+    },
+    "Profit before tax": {
+      "FY2023": 107.291579864,
+      "FY2024": 152.755596218,
+      "FY2025": 150.644711125,
+      "1H2025": 82.161662256,
+      "1H2026": 166.181326026,
+      "Source": "DART CFS"
+    },
+    "Income tax expense": {
+      "FY2023": 24.142868526,
+      "FY2024": 28.414675243,
+      "FY2025": 60.945838719,
+      "1H2025": 25.121182886,
+      "1H2026": 39.720500397,
+      "Source": "DART CFS"
+    },
+    "Net income": {
+      "FY2023": 83.148711338,
+      "FY2024": 124.340920975,
+      "FY2025": 89.698872406,
+      "1H2025": 57.04047937,
+      "1H2026": 126.460825629,
+      "Source": "DART CFS"
+    },
+    "Net income attributable to parent": {
+      "FY2023": 83.148711338,
+      "FY2024": 124.340920975,
+      "FY2025": 89.698872406,
+      "1H2025": 57.04047937,
+      "1H2026": 125.688054937,
+      "Source": "DART CFS"
+    },
+    "Tax at applicable rates (tax reconciliation)": {
+      "FY2024": 46.41768,
+      "FY2025": 44.18003,
+      "Source": "DART notes, income tax reconciliation"
+    },
+    "Ratios": {},
+    "Revenue growth": {
+      "FY2024": 0.12419245358925268,
+      "FY2025": 0.10958160848773502,
+      "1H2026": 0.07401253831546128,
+      "Source": "1H2026 column is growth vs 1H2025"
+    },
+    "Gross margin": {
+      "FY2023": 0.42678155384180094,
+      "FY2024": 0.45097019846174863,
+      "FY2025": 0.42502991724250316,
+      "1H2025": 0.44987612762894735,
+      "1H2026": 0.49899025923333346,
+      "Source": "Formula"
+    },
+    "Operating margin": {
+      "FY2023": 0.08794271018703334,
+      "FY2024": 0.09792308408061502,
+      "FY2025": 0.09544208607334441,
+      "1H2025": 0.11966380505675615,
+      "1H2026": 0.1820133803304465,
+      "Source": "Formula"
+    },
+    "Effective tax rate": {
+      "FY2023": 0.22502109258343356,
+      "FY2024": 0.18601397229630107,
+      "FY2025": 0.4045667336334773,
+      "1H2025": 0.30575309939235656,
+      "1H2026": 0.2390190362952424,
+      "Source": "Formula"
+    },
+    "Tax at applicable rates / profit before tax": {
+      "FY2024": 0.30386893278696364,
+      "FY2025": 0.29327302412456335,
+      "Source": "Formula"
+    },
+    "D&A / revenue": {
+      "FY2024": 0.03499030750003942,
+      "FY2025": 0.03515583829595318,
+      "1H2025": 0.03403956489390947,
+      "1H2026": 0.03360735403194228,
+      "Source": "Formula"
+    },
+    "Balance sheet (period end)": {},
+    "Cash and cash equivalents": {
+      "FY2023": 82.771721319,
+      "FY2024": 100.004827455,
+      "FY2025": 148.688970518,
+      "1H2026": 150.519289838,
+      "Source": "DART CFS"
+    },
+    "Short-term deposits": {
+      "FY2023": 18.842120009,
+      "FY2024": 24.230116525,
+      "FY2025": 1.615136598,
+      "1H2026": 4.285741278,
+      "Source": "DART CFS"
+    },
+    "Long-term deposits": {
+      "FY2023": 9.775590516,
+      "FY2024": 6.149884857,
+      "FY2025": 9.674202812,
+      "1H2026": 4.006451119,
+      "Source": "DART CFS"
+    },
+    "Trade receivables": {
+      "FY2023": 118.71334901,
+      "FY2024": 150.846620458,
+      "FY2025": 167.410845749,
+      "1H2026": 191.214618964,
+      "Source": "DART CFS"
+    },
+    "Inventories": {
+      "FY2023": 300.744110295,
+      "FY2024": 413.811452082,
+      "FY2025": 419.802357968,
+      "1H2026": 427.040786512,
+      "Source": "DART CFS"
+    },
+    "Property, plant and equipment": {
+      "FY2023": 394.375083877,
+      "FY2024": 468.094366737,
+      "FY2025": 582.239391909,
+      "1H2026": 680.334907215,
+      "Source": "DART CFS"
+    },
+    "Intangible assets and goodwill": {
+      "FY2023": 18.515752129,
+      "FY2024": 32.899733403,
+      "FY2025": 36.510878589,
+      "1H2026": 41.565592677,
+      "Source": "DART CFS"
+    },
+    "Total assets": {
+      "FY2023": 1060.557971487,
+      "FY2024": 1358.870104798,
+      "FY2025": 1522.167095867,
+      "1H2026": 1671.824095838,
+      "Source": "DART CFS"
+    },
+    "Trade payables": {
+      "FY2023": 152.647192288,
+      "FY2024": 154.749954453,
+      "FY2025": 147.027328975,
+      "1H2026": 152.139141319,
+      "Source": "DART CFS"
+    },
+    "Contract liabilities": {
+      "FY2023": 39.632328413,
+      "FY2024": 54.414638651,
+      "FY2025": 24.447018519,
+      "1H2026": 21.25549605,
+      "Source": "DART CFS"
+    },
+    "Short-term borrowings": {
+      "FY2023": 94.410033051,
+      "FY2024": 196.587605282,
+      "FY2025": 278.142917601,
+      "1H2026": 276.128430022,
+      "Source": "DART CFS"
+    },
+    "Long-term borrowings": {
+      "FY2023": 6.858655507,
+      "FY2024": 7.322905092,
+      "FY2025": 64.233267176,
+      "1H2026": 68.838277168,
+      "Source": "DART CFS"
+    },
+    "Lease liabilities, current": {
+      "FY2023": 5.0762637,
+      "FY2024": 7.164201707,
+      "FY2025": 7.324454813,
+      "1H2026": 7.285321831,
+      "Source": "DART CFS"
+    },
+    "Lease liabilities, non-current": {
+      "FY2023": 9.216360086,
+      "FY2024": 9.981728671,
+      "FY2025": 5.216292032,
+      "1H2026": 6.598973402,
+      "Source": "DART CFS"
+    },
+    "Total liabilities": {
+      "FY2023": 475.962722079,
+      "FY2024": 663.453095174,
+      "FY2025": 751.671610276,
+      "1H2026": 776.212081466,
+      "Source": "DART CFS"
+    },
+    "Equity attributable to parent": {
+      "FY2023": 584.595249408,
+      "FY2024": 695.417009624,
+      "FY2025": 770.495485591,
+      "1H2026": 887.982246842,
+      "Source": "DART CFS"
+    },
+    "Non-controlling interests": {
+      "FY2023": 0,
+      "FY2024": 0,
+      "FY2025": 0,
+      "1H2026": 7.62976753,
+      "Source": "DART CFS"
+    },
+    "Total equity": {
+      "FY2023": 584.595249408,
+      "FY2024": 695.417009624,
+      "FY2025": 770.495485591,
+      "1H2026": 895.612014372,
+      "Source": "DART CFS"
+    },
+    "Check: assets minus liabilities minus equity": {
+      "FY2023": 0.0,
+      "FY2024": 0.0,
+      "FY2025": -1.1368683772161603e-13,
+      "1H2025": "empty",
+      "1H2026": 0.0,
+      "Source": "Formula"
+    },
+    "Cash and deposits": {
+      "FY2023": 111.38943184399999,
+      "FY2024": 130.384828837,
+      "FY2025": 159.978309928,
+      "1H2026": 158.81148223499997,
+      "Source": "Formula"
+    },
+    "Net working capital (AR + inventory - AP - contract liabilities)": {
+      "FY2023": 227.177938604,
+      "FY2024": 355.49347943600003,
+      "FY2025": 415.7388562230001,
+      "1H2026": 444.86076810700007,
+      "Source": "Formula"
+    },
+    "Net working capital / revenue": {
+      "FY2023": 0.18863697626473758,
+      "FY2024": 0.26257395478473217,
+      "FY2025": 0.2767460134051287,
+      "Source": "Formula"
+    },
+    "Gross debt (borrowings + leases)": {
+      "FY2023": 115.56131234399999,
+      "FY2024": 221.05644075200001,
+      "FY2025": 354.91693162200005,
+      "1H2026": 358.85100242299995,
+      "Source": "Formula"
+    },
+    "Net debt": {
+      "FY2023": 4.1718805,
+      "FY2024": 90.67161191500003,
+      "FY2025": 194.93862169400006,
+      "1H2026": 200.03952018799998,
+      "Source": "Formula"
+    },
+    "Net fixed assets (PP&E + intangibles)": {
+      "FY2023": 412.89083600600003,
+      "FY2024": 500.99410014,
+      "FY2025": 618.750270498,
+      "1H2026": 721.9004998920001,
+      "Source": "Formula"
+    },
+    "Cash flow": {},
+    "Cash flow from operations": {
+      "FY2023": 197.363180983,
+      "FY2024": 52.52165082,
+      "FY2025": 71.173203156,
+      "1H2026": 122.091456567,
+      "Source": "DART CFS"
+    },
+    "Purchase of PP&E": {
+      "FY2023": 58.752559952,
+      "FY2024": 94.349453602,
+      "FY2025": 153.51052794,
+      "1H2026": 62.448932676,
+      "Source": "DART CFS"
+    },
+    "Purchase of intangibles": {
+      "FY2023": 6.781238261,
+      "FY2024": 16.978428459,
+      "FY2025": 8.735484353,
+      "1H2026": 3.764318168,
+      "Source": "DART CFS"
+    },
+    "Total capex": {
+      "FY2023": 65.533798213,
+      "FY2024": 111.327882061,
+      "FY2025": 162.246012293,
+      "1H2026": 66.213250844,
+      "Source": "Formula"
+    },
+    "Capex / revenue": {
+      "FY2023": 0.0544159244247413,
+      "FY2024": 0.08222880013704344,
+      "FY2025": 0.10800274359941626,
+      "1H2026": 0.08139108346395979,
+      "Source": "Formula"
+    },
+    "Dividends paid": {
+      "FY2023": 7.226466,
+      "FY2024": 7.9491126,
+      "FY2025": 9.3944058,
+      "1H2026": 10.839699,
+      "Source": "DART CFS"
+    }
+  },
+  "Model": {
+    "Income statement": {},
+    "Revenue: North America": {
+      "FY2025A": 865.778487,
+      "FY2026E": 926.38298109,
+      "FY2027E": 991.2297897663001,
+      "FY2028E": 1050.703577152278,
+      "FY2029E": 1103.238756009892,
+      "FY2030E": 1147.3683062502878
+    },
+    "Revenue: Korea": {
+      "FY2025A": 458.396757,
+      "FY2026E": 458.396757,
+      "FY2027E": 472.14865971,
+      "FY2028E": 486.31311950130004,
+      "FY2029E": 500.90251308633907,
+      "FY2030E": 515.9295884789293
+    },
+    "Revenue: Russia": {
+      "FY2025A": 80.044573,
+      "FY2026E": 80.044573,
+      "FY2027E": 80.044573,
+      "FY2028E": 80.044573,
+      "FY2029E": 80.044573,
+      "FY2030E": 80.044573
+    },
+    "Revenue: China": {
+      "FY2025A": 23.935346,
+      "FY2026E": 22.738578699999998,
+      "FY2027E": 21.601649764999998,
+      "FY2028E": 20.521567276749998,
+      "FY2029E": 19.495488912912496,
+      "FY2030E": 18.52071446726687
+    },
+    "Revenue: Other overseas": {
+      "FY2025A": 74.084566,
+      "FY2026E": 88.9014792,
+      "FY2027E": 102.23670107999999,
+      "FY2028E": 114.5051052096,
+      "FY2029E": 125.95561573056001,
+      "FY2030E": 136.03206498900482
+    },
+    "Total revenue": {
+      "FY2025A": 1502.239729,
+      "FY2026E": 1576.4643689900001,
+      "FY2027E": 1667.2613733213002,
+      "FY2028E": 1752.087942139928,
+      "FY2029E": 1829.6369467397037,
+      "FY2030E": 1897.8952471854886
+    },
+    "Revenue growth": {
+      "FY2026E": 0.04940931767222634,
+      "FY2027E": 0.05759534190390325,
+      "FY2028E": 0.05087778687611966,
+      "FY2029E": 0.044260908790377584,
+      "FY2030E": 0.0373070190604845
+    },
+    "Operating profit": {
+      "FY2025A": 143.376893533,
+      "FY2026E": 202.09412744437094,
+      "FY2027E": 158.38983046552352,
+      "FY2028E": 166.44835450329316,
+      "FY2029E": 173.81550994027185,
+      "FY2030E": 180.30004848262143,
+      "Note": "FY26E = 1H26 actual + 2H26 revenue x 2H margin"
+    },
+    "Operating margin": {
+      "FY2025A": 0.09544208608331912,
+      "FY2026E": 0.1281945417985231,
+      "FY2027E": 0.095,
+      "FY2028E": 0.095,
+      "FY2029E": 0.095,
+      "FY2030E": 0.095
+    },
+    "D&A": {
+      "FY2025A": 52.812497,
+      "FY2026E": 55.17625291465001,
+      "FY2027E": 58.354148066245514,
+      "FY2028E": 61.32307797489748,
+      "FY2029E": 64.03729313588964,
+      "FY2030E": 66.42633365149211
+    },
+    "EBITDA": {
+      "FY2025A": 196.189390533,
+      "FY2026E": 257.2703803590209,
+      "FY2027E": 216.74397853176902,
+      "FY2028E": 227.77143247819063,
+      "FY2029E": 237.85280307616148,
+      "FY2030E": 246.72638213411355
+    },
+    "Net interest expense": {
+      "FY2025A": -7.267817592,
+      "FY2026E": 9.774737052292842,
+      "FY2027E": 7.931265311041589,
+      "FY2028E": 5.95626950714753,
+      "FY2029E": 3.292163919225226,
+      "FY2030E": 0.27862528347126414,
+      "Note": "Opening debt x cost of debt - opening cash x risk-free. FY25A: OP - PBT (incl. other items)"
+    },
+    "Profit before tax": {
+      "FY2025A": 150.644711125,
+      "FY2026E": 192.3193903920781,
+      "FY2027E": 150.45856515448193,
+      "FY2028E": 160.49208499614562,
+      "FY2029E": 170.52334602104662,
+      "FY2030E": 180.02142319915018
+    },
+    "Income tax": {
+      "FY2025A": 60.945838719,
+      "FY2026E": 57.42098856537873,
+      "FY2027E": 44.92256101522392,
+      "FY2028E": 47.91827885170476,
+      "FY2029E": 50.91332227105462,
+      "FY2030E": 53.74917246756936
+    },
+    "Net income": {
+      "FY2026E": 134.89840182669937,
+      "FY2027E": 105.53600413925801,
+      "FY2028E": 112.57380614444085,
+      "FY2029E": 119.610023749992,
+      "FY2030E": 126.27225073158081
+    },
+    "EPS (KRW)": {
+      "FY2025A": 6206.275128534473,
+      "FY2026E": 9333.635682136979,
+      "FY2027E": 7302.048064659683,
+      "FY2028E": 7788.994381516557,
+      "FY2029E": 8275.831073583684,
+      "FY2030E": 8736.791312072928
+    },
+    "DPS (KRW)": {
+      "FY2025A": 750,
+      "FY2026E": 750,
+      "FY2027E": 750,
+      "FY2028E": 750,
+      "FY2029E": 750,
+      "FY2030E": 750
+    },
+    "Dividends": {
+      "FY2026E": 10.839699,
+      "FY2027E": 10.839699,
+      "FY2028E": 10.839699,
+      "FY2029E": 10.839699,
+      "FY2030E": 10.839699
+    },
+    "ROE (on opening equity)": {
+      "FY2026E": 0.17508006776084747,
+      "FY2027E": 0.11797608854297764,
+      "FY2028E": 0.11379706846510587,
+      "FY2029E": 0.10963493313571451,
+      "FY2030E": 0.10524837035703165
+    },
+    "Balance sheet (year end, simplified)": {},
+    "Cash and deposits": {
+      "FY2025A": 159.978309928,
+      "FY2026E": 202.98978312564938,
+      "FY2027E": 249.06994653894986,
+      "FY2028E": 311.2282663691483,
+      "FY2029E": 381.5394804558016,
+      "FY2030E": 460.24592159962344,
+      "Note": "Plug from cash flow"
+    },
+    "Net working capital": {
+      "FY2025A": 415.7388562230001,
+      "FY2026E": 409.88073593740006,
+      "FY2027E": 433.4879570635381,
+      "FY2028E": 455.54286495638127,
+      "FY2029E": 475.70560615232296,
+      "FY2030E": 493.45276426822704
+    },
+    "Net fixed assets": {
+      "FY2025A": 618.750270498,
+      "FY2026E": 673.92652341265,
+      "FY2027E": 698.9354440124695,
+      "FY2028E": 716.4563234338688,
+      "FY2029E": 734.7526929012658,
+      "FY2030E": 753.7316453731207
+    },
+    "Other net assets": {
+      "FY2025A": -69.05501943600007,
+      "FY2026E": -37.32592243600007,
+      "FY2027E": -37.32592243600007,
+      "FY2028E": -37.32592243600007,
+      "FY2029E": -37.32592243600007,
+      "FY2030E": -37.32592243600007,
+      "Note": "FY25A balancing item from reported totals. Grows only by acquisitions"
+    },
+    "Total net assets": {
+      "FY2025A": 1125.412417213,
+      "FY2026E": 1249.4711200396994,
+      "FY2027E": 1344.1674251789573,
+      "FY2028E": 1445.9015323233982,
+      "FY2029E": 1554.6718570733904,
+      "FY2030E": 1670.104408804971
+    },
+    "Gross debt": {
+      "FY2025A": 354.91693162200005,
+      "FY2026E": 354.91693162200005,
+      "FY2027E": 354.91693162200005,
+      "FY2028E": 354.91693162200005,
+      "FY2029E": 354.91693162200005,
+      "FY2030E": 354.91693162200005
+    },
+    "Total equity": {
+      "FY2025A": 770.495485591,
+      "FY2026E": 894.5541884176994,
+      "FY2027E": 989.2504935569574,
+      "FY2028E": 1090.9846007013982,
+      "FY2029E": 1199.7549254513901,
+      "FY2030E": 1315.1874771829707
+    },
+    "Check: net assets - debt - equity (must be 0)": {
+      "FY2025A": 0.0,
+      "FY2026E": 0.0,
+      "FY2027E": -1.1368683772161603e-13,
+      "FY2028E": 0.0,
+      "FY2029E": 2.2737367544323206e-13,
+      "FY2030E": 2.2737367544323206e-13
+    },
+    "Cash flow statement": {},
+    "Add: D&A": {
+      "FY2026E": 55.17625291465001,
+      "FY2027E": 58.354148066245514,
+      "FY2028E": 61.32307797489748,
+      "FY2029E": 64.03729313588964,
+      "FY2030E": 66.42633365149211
+    },
+    "Less: increase in net working capital": {
+      "FY2026E": 5.858120285600023,
+      "FY2027E": -23.60722112613803,
+      "FY2028E": -22.054907892843175,
+      "FY2029E": -20.162741195941692,
+      "FY2030E": -17.747158115904085
+    },
+    "Cash flow from operations": {
+      "FY2026E": 195.9327750269494,
+      "FY2027E": 140.28293107936548,
+      "FY2028E": 151.84197622649515,
+      "FY2029E": 163.48457568993996,
+      "FY2030E": 174.95142626716884
+    },
+    "Capex": {
+      "FY2025A": 162.246012293,
+      "FY2026E": 110.35250582930001,
+      "FY2027E": 83.36306866606502,
+      "FY2028E": 78.84395739629676,
+      "FY2029E": 82.33366260328667,
+      "FY2030E": 85.40528612334698
+    },
+    "Acquisitions": {
+      "FY2026E": 31.729097,
+      "FY2027E": 0,
+      "FY2028E": 0,
+      "FY2029E": 0,
+      "FY2030E": 0
+    },
+    "Dividends paid": {
+      "FY2026E": 10.839699,
+      "FY2027E": 10.839699,
+      "FY2028E": 10.839699,
+      "FY2029E": 10.839699,
+      "FY2030E": 10.839699
+    },
+    "Net borrowing": {
+      "FY2026E": 0,
+      "FY2027E": 0,
+      "FY2028E": 0,
+      "FY2029E": 0,
+      "FY2030E": 0,
+      "Note": "Debt held flat"
+    },
+    "Net change in cash": {
+      "FY2026E": 43.011473197649394,
+      "FY2027E": 46.08016341330047,
+      "FY2028E": 62.158319830198394,
+      "FY2029E": 70.3112140866533,
+      "FY2030E": 78.70644114382186
+    }
+  },
+  "DCF": {
+    "Market cap": {
+      "Value": 870.0665064,
+      "Note": "Price x shares outstanding"
+    },
+    "Gross debt, 30 Jun 2026": {
+      "Value": 358.85100242299995
+    },
+    "Debt / equity": {
+      "Value": 0.41244088789003863
+    },
+    "Levered beta": {
+      "Value": 1.1194943166066944,
+      "Note": "Unlevered beta x (1 + (1 - t) x D/E)"
+    },
+    "Cost of equity": {
+      "Value": 0.09736817827557995,
+      "Note": "CAPM"
+    },
+    "After-tax cost of debt": {
+      "Value": 0.03448896
+    },
+    "Equity weight": {
+      "Value": 0.7079942308196986
+    },
+    "WACC": {
+      "Value": 0.07900708377756316
+    },
+    "Free cash flow to firm": {
+      "Value": 56.56984282284185,
+      "C": 62.483082080032105,
+      "D": 77.17591912265067,
+      "E": 83.46013240327868,
+      "F": 89.7415760037846
+    },
+    "Revenue": {
+      "Value": 762.9446561910001,
+      "C": 1667.2613733213002,
+      "D": 1752.087942139928,
+      "E": 1829.6369467397037,
+      "F": 1897.8952471854886,
+      "Note": "2H26 = FY26E - 1H26 actual"
+    },
+    "EBIT (operating profit)": {
+      "Value": 54.02265455237094,
+      "C": 158.38983046552352,
+      "D": 166.44835450329316,
+      "E": 173.81550994027185,
+      "F": 180.30004848262143
+    },
+    "Less: tax on EBIT": {
+      "Value": -16.129596828479098,
+      "C": -47.29060665953386,
+      "D": -49.69664806640003,
+      "E": -51.89626687365446,
+      "F": -53.83236189107788
+    },
+    "NOPAT": {
+      "Value": 37.89305772389184,
+      "C": 111.09922380598965,
+      "D": 116.75170643689313,
+      "E": 121.91924306661738,
+      "F": 126.46768659154355
+    },
+    "Add: D&A": {
+      "Value": 27.836007914650008,
+      "C": 58.354148066245514,
+      "D": 61.32307797489748,
+      "E": 64.03729313588964,
+      "F": 66.42633365149211
+    },
+    "Less: capex": {
+      "Value": -44.13925498530001,
+      "C": -83.36306866606502,
+      "D": -78.84395739629676,
+      "E": -82.33366260328667,
+      "F": -85.40528612334698
+    },
+    "Less: increase in net working capital": {
+      "Value": 34.98003216960001,
+      "C": -23.60722112613803,
+      "D": -22.054907892843175,
+      "E": -20.162741195941692,
+      "F": -17.747158115904085,
+      "Note": "2H26 vs 30 Jun 2026 actual NWC"
+    },
+    "Discount period, mid-point (years from 30 Jun 2026)": {
+      "Value": 0.25,
+      "C": 1,
+      "D": 2,
+      "E": 3,
+      "F": 4,
+      "Note": "2H26 mid-point 0.25y, then full years centred at 1.0, 2.0, 3.0, 4.0"
+    },
+    "Discount factor": {
+      "Value": 0.9811692435426903,
+      "C": 0.9267779748943238,
+      "D": 0.858917414749224,
+      "E": 0.7960257422427538,
+      "F": 0.7377391253594904
+    },
+    "PV of FCFF": {
+      "Value": 55.50458988981663,
+      "C": 57.90794427528797,
+      "D": 66.28774093372232,
+      "E": 66.43641384399842,
+      "F": 66.20587178941427
+    },
+    "Memo: revenue at long-term margin (for sensitivity)": {
+      "Value": 0,
+      "C": 1667.2613733213002,
+      "D": 1752.087942139928,
+      "E": 1829.6369467397037,
+      "F": 1897.8952471854886
+    },
+    "Valuation": {
+      "Value": "Value",
+      "Note": "Note"
+    },
+    "Sum of PV of FCFF": {
+      "Value": 312.34256073223963
+    },
+    "Terminal value at end FY2030": {
+      "Value": 1551.2782815860166,
+      "Note": "FCFF FY2030 x (1 + g) / (WACC - g)"
+    },
+    "Terminal discount period (years)": {
+      "Value": 4.5,
+      "Note": "End of FY2030 = 4.5 years after 30 Jun 2026"
+    },
+    "PV of terminal value": {
+      "Value": 1101.743205388418
+    },
+    "Enterprise value": {
+      "Value": 1414.0857661206576
+    },
+    "Terminal value as % of EV": {
+      "Value": 0.7791204973450041
+    },
+    "Less: net debt, 30 Jun 2026": {
+      "Value": 200.03952018799998
+    },
+    "Less: non-controlling interests, 30 Jun 2026": {
+      "Value": 7.62976753
+    },
+    "Equity value": {
+      "Value": 1206.4164784026577
+    },
+    "Equity value per share (KRW)": {
+      "Value": 83472.09261087354
+    },
+    "Current price (KRW)": {
+      "Value": 60200
+    },
+    "Upside / (downside)": {
+      "Value": 0.3865796114763047
+    },
+    "Rating": {
+      "Value": "Overweight"
+    },
+    "Implied EV / EBITDA FY2026E": {
+      "Value": 5.496496581329341
+    },
+    "Implied EV / EBITDA FY2027E": {
+      "Value": 6.524221690954102
+    },
+    "Implied P/E FY2027E": {
+      "Value": 11.431326098065584
+    },
+    "Implied terminal EV / EBITDA (FY2030)": {
+      "Value": 6.287443880820112,
+      "Note": "Sanity check on the Gordon growth terminal value"
+    },
+    "Sensitivity: value per share (KRW), WACC (rows) x terminal growth (columns)": {},
+    "row48": {
+      "Value": 0.01,
+      "C": 0.015,
+      "D": 0.02,
+      "E": 0.025,
+      "F": 0.03,
+      "Note": "Base case WACC and g sit near the centre. Rows are WACC."
+    },
+    "row49": {
+      "A": 0.069,
+      "Value": 86403.39312846024,
+      "C": 94118.46537755158,
+      "D": 103408.04216727379,
+      "E": 114808.88640920556,
+      "F": 129133.02404650448
+    },
+    "row50": {
+      "A": 0.074,
+      "Value": 78524.65470018587,
+      "C": 84928.7939531197,
+      "D": 92518.88491955983,
+      "E": 101657.97404241627,
+      "F": 112874.12887501283
+    },
+    "row51": {
+      "A": 0.079,
+      "Value": 71795.22591154625,
+      "C": 77182.92852734907,
+      "D": 83483.80107803372,
+      "E": 90951.50187884514,
+      "F": 99943.22325125076
+    },
+    "row52": {
+      "A": 0.084,
+      "Value": 65981.87930587388,
+      "C": 70566.7219929877,
+      "D": 75867.94634996305,
+      "E": 82067.68330981558,
+      "F": 89415.51970667782
+    },
+    "row53": {
+      "A": 0.089,
+      "Value": 60910.44196079994,
+      "C": 64850.94209807376,
+      "D": 69362.52921176408,
+      "E": 74579.05181196847,
+      "F": 80679.73078508893
+    },
+    "Sensitivity: value per share (KRW), long-term operating margin (rows) x WACC (columns)": {},
+    "row56": {
+      "Value": 0.069,
+      "C": 0.074,
+      "D": 0.079,
+      "E": 0.084,
+      "F": 0.089,
+      "Note": "Margin applies from FY2027E. 2H2026E is fixed. FY23 to FY25 margins: 8.8% to 9.8%"
+    },
+    "row57": {
+      "A": 0.085,
+      "Value": 86274.29531593407,
+      "C": 77001.34559323783,
+      "D": 69307.4174384119,
+      "E": 62822.17228099754,
+      "F": 57282.625471562606
+    },
+    "row58": {
+      "A": 0.095,
+      "Value": 103408.04216727379,
+      "C": 92518.88491955983,
+      "D": 83483.80107803372,
+      "E": 75867.94634996305,
+      "F": 69362.52921176408
+    },
+    "row59": {
+      "A": 0.105,
+      "Value": 120541.78901861349,
+      "C": 108036.42424588185,
+      "D": 97660.18471765553,
+      "E": 88913.72041892857,
+      "F": 81442.43295196556
+    },
+    "row60": {
+      "A": 0.115,
+      "Value": 137675.53586995325,
+      "C": 123553.96357220388,
+      "D": 111836.56835727736,
+      "E": 101959.4944878941,
+      "F": 93522.33669216702
+    },
+    "row61": {
+      "A": 0.125,
+      "Value": 154809.28272129293,
+      "C": 139071.5028985259,
+      "D": 126012.95199689915,
+      "E": 115005.2685568596,
+      "F": 105602.24043236846
+    }
+  },
+  "Comps": {
+    "A. O. Smith": {
+      "Ticker": "AOS",
+      "Currency": "USD",
+      "Market cap (m)": 7971,
+      "EV (m)": 8337.8,
+      "EBITDA TTM (m)": 783.7,
+      "Net income TTM (m)": 500.3,
+      "EV/EBITDA": 10.639020033175958,
+      "P/E TTM": 15.932440535678593,
+      "P/E fwd": 14.3528,
+      "P/B": 4.3278,
+      "ROE": 0.2713,
+      "Op. margin": 0.1893
+    },
+    "Rinnai": {
+      "Ticker": "5947.T",
+      "Currency": "JPY",
+      "Market cap (m)": 476340.2,
+      "EV (m)": 359255.1,
+      "EBITDA TTM (m)": 64900.8,
+      "Net income TTM (m)": 36282,
+      "EV/EBITDA": 5.535449485984764,
+      "P/E TTM": 13.128829722727524,
+      "P/E fwd": 15.1163,
+      "P/B": 1.0878,
+      "ROE": 0.0918,
+      "Op. margin": 0.0807
+    },
+    "Noritz": {
+      "Ticker": "5943.T",
+      "Currency": "JPY",
+      "Market cap (m)": 101138.9,
+      "EV (m)": 84300.6,
+      "EBITDA TTM (m)": 13466,
+      "Net income TTM (m)": 7150,
+      "EV/EBITDA": 6.260255458191,
+      "P/E TTM": 14.145300699300698,
+      "P/E fwd": 31.9735,
+      "P/B": 0.71,
+      "ROE": 0.0512,
+      "Op. margin": 0.0032
+    },
+    "Ariston Holding": {
+      "Ticker": "ARIS.MI",
+      "Currency": "EUR",
+      "Market cap (m)": 1470,
+      "EV (m)": 2094.7,
+      "EBITDA TTM (m)": 249.7,
+      "Net income TTM (m)": 109.2,
+      "EV/EBITDA": 8.388866639967961,
+      "P/E TTM": 13.461538461538462,
+      "P/E fwd": 9.8534,
+      "P/B": 0.8959,
+      "ROE": 0.0735,
+      "Op. margin": 0.0461
+    },
+    "Lennox International": {
+      "Ticker": "LII",
+      "Currency": "USD",
+      "Market cap (m)": 12917.7,
+      "EV (m)": 14683.3,
+      "EBITDA TTM (m)": 1170.8,
+      "Net income TTM (m)": 788.5,
+      "EV/EBITDA": 12.541253843525794,
+      "P/E TTM": 16.38262523779328,
+      "P/E fwd": 14.3,
+      "P/B": 9.9576,
+      "ROE": 0.7176,
+      "Op. margin": 0.2286
+    },
+    "Coway": {
+      "Ticker": "021240.KS",
+      "Currency": "KRW",
+      "Market cap (m)": 6998865.2,
+      "EV (m)": 9524181.2,
+      "EBITDA TTM (m)": 1330515.5,
+      "Net income TTM (m)": 683539.9,
+      "EV/EBITDA": 7.158263996172911,
+      "P/E TTM": 10.239146537020003,
+      "P/E fwd": 8.9324,
+      "P/B": "n/a",
+      "ROE": 0.1931,
+      "Op. margin": 0.1756
+    },
+    "Peer median": {
+      "EV/EBITDA": 7.773565318070436,
+      "P/E TTM": 13.803419580419579,
+      "P/E fwd": 14.3264,
+      "P/B": 1.0878,
+      "ROE": 0.14245,
+      "Op. margin": 0.12815
+    },
+    "Kyung Dong Navien (KRW bn)": {},
+    "Market cap": {
+      "Ticker": 870.0665064
+    },
+    "Enterprise value": {
+      "Ticker": 1077.735794118,
+      "Currency": "Market cap + net debt + NCI, 30 Jun 2026"
+    },
+    "EBITDA, LTM to 1H2026": {
+      "Ticker": 255.17721492500002,
+      "Currency": "FY2025 - 1H2025 + 1H2026. Includes undisclosed US tariff refunds in 1H2026"
+    },
+    "Net income to parent, LTM": {
+      "Ticker": 158.346447973
+    },
+    "EV / EBITDA, LTM": {
+      "Ticker": 4.223479727352464
+    },
+    "P/E, LTM": {
+      "Ticker": 5.494701760208457
+    },
+    "P/E, FY2027E (model)": {
+      "Ticker": 8.24426235857784,
+      "Currency": "FY2027E is the first year with no tariff refund assumed"
+    },
+    "P/B, 30 Jun 2026": {
+      "Ticker": 0.9798242132590881
+    },
+    "Implied value per share at peer median (KRW)": {},
+    "At median EV / EBITDA (LTM)": {
+      "Ticker": 122879.38946815675,
+      "Currency": "Cross-check only, not blended into the target"
+    },
+    "At median P/E (LTM)": {
+      "Ticker": 151230.38428745107
+    },
+    "At median forward P/E on FY2027E net income": {
+      "Ticker": 104612.0613935405
+    },
+    "DCF value per share": {
+      "Ticker": 83472.09261087354
+    }
+  }
+}

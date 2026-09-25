@@ -143,3 +143,80 @@ def event_study_car(mean_cum_ar, n, t_stat):
     fig.tight_layout(rect=(0, 0.04, 1, 1))
     fig.savefig(CHART_DIR / "event_study_car.png", dpi=200)
     plt.close(fig)
+
+
+# ---------------- Kyung Dong Navien note charts ----------------
+# Categorical palette in fixed order (dataviz reference palette, light mode)
+CATEGORICAL = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4"]
+
+
+def navien_revenue_by_region(years, series, n_actual, path):
+    """Stacked bars of revenue by region. series: {region: [values per year]} in KRW bn."""
+    fig, ax = plt.subplots(figsize=(6.5, 3.4))
+    bottom = np.zeros(len(years))
+    for color, (name, vals) in zip(CATEGORICAL, series.items()):
+        vals = np.array(vals)
+        ax.bar(years, vals, bottom=bottom, color=color, edgecolor=SURFACE, linewidth=1.5, width=0.7, label=name)
+        bottom += vals
+    for i, total in enumerate(bottom):
+        ax.text(i, total + 20, f"{total:,.0f}", ha="center", fontsize=7.5, color=TEXT_SECONDARY)
+    ax.axvline(n_actual - 0.5, color=TEXT_SECONDARY, linewidth=1, linestyle="--")
+    ax.text(n_actual - 0.45, bottom.max() * 1.07, "Forecast", fontsize=7.5, color=TEXT_SECONDARY)
+    ax.set_ylabel("Revenue (KRW bn)")
+    ax.set_ylim(0, bottom.max() * 1.15)
+    ax.grid(axis="x", visible=False)
+    ax.legend(frameon=False, fontsize=7.5, ncol=5, loc="upper left", bbox_to_anchor=(0, -0.1))
+    ax.set_title("Revenue by region: North America is 58% of sales", loc="left", fontsize=10.5)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+
+
+def navien_capex_fcf(years, capex, fcf, n_actual, path):
+    """Grouped bars: capex vs free cash flow (CFO - capex), KRW bn."""
+    fig, ax = plt.subplots(figsize=(6.5, 3.4))
+    x = np.arange(len(years))
+    w = 0.38
+    ax.bar(x - w / 2, capex, w, color=CATEGORICAL[1], edgecolor=SURFACE, linewidth=1.5, label="Capex")
+    ax.bar(x + w / 2, fcf, w, color=CATEGORICAL[0], edgecolor=SURFACE, linewidth=1.5,
+           label="Free cash flow (CFO - capex)")
+    ax.axhline(0, color=TEXT_SECONDARY, linewidth=1)
+    ax.axvline(n_actual - 0.5, color=TEXT_SECONDARY, linewidth=1, linestyle="--")
+    for i, v in enumerate(fcf):
+        ax.text(i + w / 2, v + (4 if v >= 0 else -12), f"{v:,.0f}", ha="center", fontsize=7, color=TEXT_SECONDARY)
+    ax.set_xticks(x)
+    ax.set_xticklabels(years)
+    ax.set_ylabel("KRW bn")
+    ax.grid(axis="x", visible=False)
+    ax.legend(frameon=False, fontsize=7.5, ncol=2, loc="upper left", bbox_to_anchor=(0, -0.1))
+    ax.set_title("The capex cycle is ending: free cash flow turns positive", loc="left", fontsize=10.5)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
+
+
+def navien_valuation_range(rows, price, target, path):
+    """Football field. rows: [(label, low, high)]; a point estimate has low == high."""
+    fig, ax = plt.subplots(figsize=(6.5, 2.6))
+    for i, (lab, lo, hi) in enumerate(rows):
+        if hi > lo:
+            ax.barh(i, hi - lo, left=lo, height=0.5, color=CATEGORICAL[0], alpha=0.85)
+            ax.text(hi + 1500, i, f"{lo:,.0f} to {hi:,.0f}", va="center", fontsize=7.5, color=TEXT_SECONDARY)
+        else:
+            ax.scatter([lo], [i], s=60, color=CATEGORICAL[0], edgecolor=SURFACE, linewidth=1.5, zorder=3)
+            ax.text(lo + 1500, i, f"{lo:,.0f}", va="center", fontsize=7.5, color=TEXT_SECONDARY)
+    ax.axvline(price, color=TEXT_SECONDARY, linewidth=1.2)
+    ax.text(price, -0.85, f"Price {price:,.0f}", ha="right", fontsize=7.5, color=TEXT_SECONDARY)
+    ax.axvline(target, color=CATEGORICAL[1], linewidth=1.5, linestyle="--")
+    ax.text(target, -0.85, f" Target {target:,.0f}", ha="left", fontsize=7.5, color=CATEGORICAL[1])
+    ax.set_yticks(range(len(rows)))
+    ax.set_yticklabels([r[0] for r in rows], fontsize=8)
+    ax.invert_yaxis()
+    ax.set_ylim(len(rows) - 0.5, -1.1)
+    ax.xaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+    ax.set_xlabel("Value per share (KRW)")
+    ax.grid(axis="y", visible=False)
+    ax.set_title("Valuation range", loc="left", fontsize=10.5)
+    fig.tight_layout()
+    fig.savefig(path, dpi=200)
+    plt.close(fig)
