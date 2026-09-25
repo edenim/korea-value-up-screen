@@ -1,0 +1,10 @@
+# Requires Python >= 3.10 (pykrx 1.2.x dropped support for 3.9)
+pykrx==1.2.9
+OpenDartReader
+pandas
+numpy
+statsmodels
+matplotlib
+openpyxl
+python-dotenv
+requests

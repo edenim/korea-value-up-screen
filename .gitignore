@@ -1,0 +1,17 @@
+# Secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Data: raw API responses are cached locally, never committed
+data/raw/*
+!data/raw/.gitkeep
+
+# OS / Office temp files
+.DS_Store
+~$*.xlsx
+~$*.docx
