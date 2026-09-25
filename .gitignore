@@ -18,3 +18,6 @@ data/raw/*
 
 # OpenDartReader writes its corp-code cache here
 docs_cache/
+
+# Local session notes for Claude Code (kept on disk, not published)
+CLAUDE.md
