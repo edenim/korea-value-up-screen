@@ -1,5 +1,6 @@
-# Requires Python >= 3.10 (pykrx 1.2.x dropped support for 3.9)
-pykrx==1.2.9
+# Python 3.12 (installed via uv)
+# Market data: FinanceDataReader (no login). Financials + disclosures: OpenDartReader (DART key).
+finance-datareader
 OpenDartReader
 pandas
 numpy
