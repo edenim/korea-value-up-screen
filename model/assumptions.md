@@ -1,6 +1,9 @@
-# Kyung Dong Navien (009450): DCF assumptions, proposed for confirmation
+# Kyung Dong Navien (009450): DCF assumptions
 
-Status: PROPOSED. Nothing here is final until confirmed. All KRW figures in billions unless noted.
+Status: CONFIRMED by the analyst on 2026-09-25 and implemented in `model/Navien_009450_model.xlsx`.
+Implementation notes: market cap uses shares outstanding (ex treasury), KRW 870.1bn, so D/E is 0.412 and
+WACC is 7.90%. The tax rate on EBIT is the exact average of the two applicable-rate ratios, 29.9%.
+All KRW figures in billions unless noted.
 Every historical number comes from DART (consolidated statements, notes, filings) cached in
 `data/raw/dart/`. Market inputs come from files cached in `data/raw/reference/`.
 
